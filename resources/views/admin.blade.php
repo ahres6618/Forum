@@ -43,46 +43,7 @@
       <!-- Page Content  -->
       <div id="content" class="p-4 p-md-5 pt-5">
         <h2 class="mb-4">Sidebar #08</h2>
-        <form method="post" action="{{route('article.store')}}" enctype="multipart/form-data">
-          @csrf
-          <input type="hidden" name="id">
-          <div class="form-row">
-              <div class="name">عنوان </div>
-              <div class="value">
-                  <input class="input--style-6" type="text" name="title">
-              </div>
-          </div>
-         
-          <div class="form-row">
-              <div class="name">النص</div>
-              <div class="value">
-                  <div class="input-group">
-                      <textarea class="textarea--style-6" name="body" placeholder="Message sent to the employer"></textarea>
-                  </div>
-              </div>
-          </div>
-          <div class="form-row">
-              <div class="name">حمل الصورة</div>
-              <div class="value">
-                  <div class="input-group js-input-file">
-                      <input class="input-file" type="file" name="image" id="file">
-                      <label class="label--file" for="file">Choose file</label>
-                      <span class="input-file__info">No file chosen</span>
-                  </div>
-                  <div class="label--desc">Upload your CV/Resume or any other relevant file. Max file size 50 MB</div>
-              </div>
-          </div>
-          <div class="form-row">
-           
-            <div class="value">
-                <div class="input-group js-input-file">
-                    <input type="submit" value="ارسل" id="file">
-                    
-                </div>
-                
-            </div>
-        </div>
-      </form>
+       
       </div>
 
       <nav id="sidebar">

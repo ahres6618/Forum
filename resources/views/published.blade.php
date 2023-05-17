@@ -42,52 +42,71 @@
     <div class="container d-md-flex align-items-stretch">
       <!-- Page Content  -->
       <div id="content" class="p-4 p-md-5 pt-5">
-        <h2 class="mb-4">Sidebar #08</h2>
-        <form method="post" action="{{route('article.store')}}" enctype="multipart/form-data">
-          @csrf
-          <input type="hidden" name="id">
-          <div class="form-row">
-              <div class="name">عنوان </div>
-              <div class="value">
-                  <input class="input--style-6" type="text" name="title">
-              </div>
-          </div>
-         
-          <div class="form-row">
-              <div class="name">النص</div>
-              <div class="value">
-                  <div class="input-group">
-                      <textarea class="textarea--style-6" name="body" placeholder="Message sent to the employer"></textarea>
-                  </div>
-              </div>
-          </div>
-          <div class="form-row">
-              <div class="name">حمل الصورة</div>
-              <div class="value">
-                  <div class="input-group js-input-file">
-                      <input class="input-file" type="file" name="image" id="file">
-                      <label class="label--file" for="file">اختر ملف</label>
-                      
-                  </div>
-                  <div class="label--desc">صورة المقالة </div>
-              </div>
-          </div>
-          <div class="form-row">
-           
-            <div class="value">
-                <div class="input-group js-input-file">
-                    <input type="submit" value="ارسل" id="file">
-                    
+        <div class="">
+            <div class="card my-5">
+                <div class="card-header">
+                    <div class="text-center text-uppercase">
+                       <h4>Clients</h4> 
+                    </div>
                 </div>
-                
+              @php
+              $id= Auth::user()->id;
+              $articles = App\Models\Article::where('status','approved')->where('writer_id',$id)->get();
+                  
+              @endphp
+                    
+               
+                <div class="card-body">
+                    <table id="mytable" class=" table table-bordered table-stripped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Title</th>
+                                <th>writer</th>
+                                <th>status </th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach ($articles as $item)
+                                <tr>
+                                <td>{{$item->id}}</td>
+                                <td>{{$item->title}}</td>
+                               
+                               
+                                <td class="d-flex justify-content-center align-items-center">
+                                    <a href="{{route('article.details', $item->id )}}"
+                                        class="btn btn-sm btn-primary mx-2">
+                                        <i class="fas fa-eye"></i>
+                                        </a>
+                                   
+                                    <a href="{{route('article.edit', $item->id )}}"
+                                        class="btn btn-sm btn-warning mx-2">
+                                        <i class="fas fa-edit"></i>
+                                        </a>
+                                        <a href="{{route('article.delete', $item->id )}}"
+                                            class="btn btn-sm btn-danger mx-2">
+                                            <i class="fas fa-trash"></i>
+                                            </a>
+                             
+                                </td>
+                                </tr>
+                                @endforeach
+                        </tbody>
+
+                    </table>
+                </div>
+
             </div>
         </div>
-      </form>
+   
+      
+       
       </div>
 
       <nav id="sidebar">
 				<div class="p-4 pt-5">
-					
+				
 	        <ul class="list-unstyled components mb-5">
 	          <li>
 	            <a href="#pageSubmenu1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">مقالاتي </a>
@@ -100,12 +119,11 @@
               
 	            </ul>
 	          </li>
-	   
-	    
+	        
+	       
 	        </ul>
-					
-					</div>
 				
+					
 	      </div>
     	</nav>
 		</div>

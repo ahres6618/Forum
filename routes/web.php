@@ -28,11 +28,23 @@ Route::get('/dashboard', function () {
 Route::controller(UserController::class)->group(function(){
     Route::get('admin/logout', 'destroy')->name('admin.logout');
     Route::post('store/article', 'Storearticle')->name('article.store');
+    Route::get('waiting/articles', 'waitingarticles')->name('waiting.articles');
+    Route::get('tobeedited/articles', 'tobeedited')->name('tobeedited.articles');
+    Route::get('article/edit/{id}', 'articleedit')->name('article.edit');
+    Route::post('article.update', 'articleupdate')->name('article.update');
+    Route::get('published/articless', 'publishedarticles')->name('published.articles');
+    Route::get('article/delete/{id}', 'deletearticle')->name('article.delete');
+    Route::get('article/details/{id}', 'Detailsarticle')->name('article.details');
+   
+   
     });
 
 
 Route::controller(AdminController::class)->group(function(){
     Route::get('adminpanel', 'adminpage')->name('admin.panel');
+    Route::post('status/approve/{id}', 'approvestatue')->name('article.aprove');
+    Route::post('status/edit/{id}', 'editstatue')->name('status.edit');
+    Route::post('status/delete/{id}', 'deletestatus')->name('status.delete');
     
         });
 

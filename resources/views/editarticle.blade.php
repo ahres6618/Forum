@@ -42,75 +42,47 @@
     <div class="container d-md-flex align-items-stretch">
       <!-- Page Content  -->
       <div id="content" class="p-4 p-md-5 pt-5">
-    
-            <div class="">
-                <div class="card my-5">
-                    <div class="card-header">
-                        <div class="text-center text-uppercase">
-                           <h4>Clients</h4> 
-                        </div>
-                    </div>
-                  
-                        
-                   
-                    <div class="card-body">
-                        <table id="mytable" class=" table table-bordered table-stripped">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Title</th>
-                                    <th>writer</th>
-                                    <th>status </th>
-                                </tr>
-                            </thead>
-    
-                            <tbody>
-                                @foreach ($articles as $item)
-                                    <tr>
-                                    <td>{{$item->id}}</td>
-                                    <td>{{$item->title}}</td>
-                                    <td>{{$item->writer}}</td>
-                                    <td>{{$item->status}}</td>
-                                   
-                                    <td class="d-flex justify-content-center align-items-center">
-                                        <form action="{{route('article.aprove', $item->id)}}" method="post" class="mx-auto">
-    
-                                          @csrf
-                                            <button type="submit"
-                                            class="btn btn-sm btn-danger ">
-                                            approvee
-                                            </button>
-                                            </form>
-                                    
-                                   
-                                            <form action="{{route('status.edit', $item->id)}}" method="post" class="mx-auto">
-                                              @csrf
-                                   
-                                                <button type="submit"
-                                                class="btn btn-sm btn-danger">
-                                                  edited
-                                                </button>
-                                                </form>
-                                    
-                                    <form action="{{route('status.delete', $item->id)}}" method="post" class="mx-auto">
-    
-                                      @csrf
-                                    <button type="submit"
-                                    class="btn btn-sm btn-danger">
-                                    delete
-                                    </button>
-                                    </form>
-                                    </td>
-                                    </tr>
-                                    @endforeach
-                            </tbody>
-    
-                        </table>
-                    </div>
-    
+        <h2 class="mb-4">Sidebar #08</h2>
+        <form method="post" action="{{route('article.update')}}" enctype="multipart/form-data">
+          @csrf
+          <input type="hidden" name="id" value="{{$article->id }}">
+          <div class="form-row">
+              <div class="name">عنوان </div>
+              <div class="value">
+                  <input class="input--style-6" type="text" name="title" value="{{$article->title }}">
+              </div>
+          </div>
+         
+          <div class="form-row">
+              <div class="name">النص</div>
+              <div class="value">
+                  <div class="input-group">
+                      <textarea class="textarea--style-6" name="body" placeholder="Message sent to the employer">{{$article->body }}</textarea>
+                  </div>
+              </div>
+          </div>
+          <div class="form-row">
+              <div class="name">حمل الصورة</div>
+              <div class="value">
+                  <div class="input-group js-input-file">
+                      <input class="input-file" type="file" name="image" id="file">
+                      <label class="label--file" for="file">Choose file</label>
+                      <span class="input-file__info">No file chosen</span>
+                  </div>
+                  <div class="label--desc">Upload your CV/Resume or any other relevant file. Max file size 50 MB</div>
+              </div>
+          </div>
+          <div class="form-row">
+           
+            <div class="value">
+                <div class="input-group js-input-file">
+                    <input type="submit" value="ارسل" id="file">
+                    
                 </div>
+                
             </div>
-       
+        </div>
+      </form>
       </div>
 
       <nav id="sidebar">
@@ -118,15 +90,15 @@
 					<h5>Categories</h5>
 	        <ul class="list-unstyled components mb-5">
 	          <li>
-	            <a href="#pageSubmenu1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Mens Shoes</a>
+	            <a href="#pageSubmenu1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">مقالاتي </a>
 	            <ul class="collapse list-unstyled" id="pageSubmenu1">
-                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span> Casual</a></li>
-                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span> Football</a></li>
-                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span> Jordan</a></li>
-                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span> Lifestyle</a></li>
-                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span> Running</a></li>
-                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span> Soccer</a></li>
-                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span> Sports</a></li>
+                <li><a href="{{route('dashboard')}}"><span class="fa fa-chevron-right mr-2"></span> أضف مفالة </a></li>
+                <li><a href="{{route('waiting.articles')}}"><span class="fa fa-chevron-right mr-2"></span>مقالات بإنتظار الموافقة عليها </a></li>
+                <li><a href="{{route('tobeedited.articles')}}"><span class="fa fa-chevron-right mr-2"></span> يجب تعديلها</a></li>
+                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span> مرفوضة</a></li>
+                <li><a href="{{route('published.articles')}}"><span class="fa fa-chevron-right mr-2"></span> المقالات المنشورة</a></li>
+              
+              
 	            </ul>
 	          </li>
 	          <li>

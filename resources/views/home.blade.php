@@ -1,3 +1,7 @@
+@php
+ $article =  App\Models\Article::where('status','approved')->latest()->get(); 
+ $random = App\Models\Article::where('status','approved')->inRandomOrder()->limit(5)->get();
+@endphp
 
 <!DOCTYPE html>
 <html lang="en">
@@ -32,36 +36,30 @@ a{
 	  </style>
   </head>
   <body>
-@php
- $article =  App\Models\Article::latest()->get(); 
- $random = App\Models\Article::inRandomOrder()->limit(5)->get();
-@endphp
 
 
     <nav class="navbar navbar-expand-md bg-dark navbar-dark sticky-top">
-      <a class="navbar-brand" href="#">WebSiteName</a>
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navb" aria-expanded="true">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+      <a class="navbar-brand" href='/'>WebSiteName</a>
+     
       <div id="navb" class="navbar-collapse collapse hide">
         <ul class="navbar-nav">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home</a>
+            <a class="nav-link" href="#">الإقتصاد</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Page 1</a>
+            <a class="nav-link" href="#">الرياضة</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Page 2</a>
+            <a class="nav-link" href="#">الإعلانات</a>
           </li>
         </ul>
     
         <ul class="nav navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="{{route('register')}}"><span class="fas fa-user"></span> Sign Up</a>
+            <a class="nav-link" href="{{route('register')}}"><span class="fas fa-user"></span> الإشتراك</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{route('login')}}"><span class="fas fa-sign-in-alt"></span> Login</a>
+            <a class="nav-link" href="{{route('login')}}"><span class="fas fa-sign-in-alt"></span> تسجيل الدخول</a>
           </li>
         </ul>
       </div>
@@ -75,13 +73,13 @@ a{
         <div class="col-lg-9 mb-3">
         @foreach ($article as $item)
           <!-- End of post 1 -->
-          <div class="card row-hover pos-relative py-3 px-3 mb-3 border-warning border-top-0 border-right-0 border-bottom-0 rounded-0">
+          <div class="card row-hover pos-relative py-3 px-3 mb-3 border-warning border-top-0 border-right-0 border-bottom-0 rounded-0" >
             <div class="row align-items-center">
               <div class="col-md-8 mb-3 mb-sm-0">
                 <h5>
                   <a href="#" class="text-primary">{{$item->title}}</a>
                 </h5>
-                <p class="text-sm"><span class="op-6">Posted</span> <a class="text-black" href="#">{{Carbon\Carbon::parse($item->created_at)->diffForhumans()}}</a> 
+                <p class="text-sm"><span class="op-6">Posted</span> <a class="text-black" href="#">{{Carbon\Carbon::parse($item->created_at)->locale('ar')->diffForhumans()}}</a> 
                   <span class="op-6">by</span> <a class="text-black" href="#">{{$item->writer}}</a></p>
                 <div class="text-sm op-5 text-black"> {{Str::limit($item->body, 20);}}... </div>
               </div>

@@ -20,20 +20,20 @@
       <div id="navb" class="navbar-collapse collapse hide">
         <ul class="navbar-nav">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home</a>
+            <a class="nav-link" href="#">الإقتصاد</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Page 1</a>
+            <a class="nav-link" href="#">الرياضة</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Page 2</a>
+            <a class="nav-link" href="#">الإعلانات</a>
           </li>
         </ul>
     
         <ul class="nav navbar-nav ml-auto">
          
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('admin.logout')}}"><span class="fas fa-sign-in-alt"></span> logout</a>
+            <a class="nav-link" href="{{ route('admin.logout')}}"><span class="fas fa-sign-in-alt"></span> تسجيل الخروج</a>
           </li>
         </ul>
       </div>
@@ -42,74 +42,62 @@
     <div class="container d-md-flex align-items-stretch">
       <!-- Page Content  -->
       <div id="content" class="p-4 p-md-5 pt-5">
-    
-            <div class="">
-                <div class="card my-5">
-                    <div class="card-header">
-                        <div class="text-center text-uppercase">
-                           <h4>Clients</h4> 
-                        </div>
+        <div class="">
+            <div class="card my-5">
+                <div class="card-header">
+                    <div class="text-center text-uppercase">
+                       <h4>Clients</h4> 
                     </div>
-                  
-                        
-                   
-                    <div class="card-body">
-                        <table id="mytable" class=" table table-bordered table-stripped">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Title</th>
-                                    <th>writer</th>
-                                    <th>status </th>
-                                </tr>
-                            </thead>
-    
-                            <tbody>
-                                @foreach ($articles as $item)
-                                    <tr>
-                                    <td>{{$item->id}}</td>
-                                    <td>{{$item->title}}</td>
-                                    <td>{{$item->writer}}</td>
-                                    <td>{{$item->status}}</td>
-                                   
-                                    <td class="d-flex justify-content-center align-items-center">
-                                        <form action="{{route('article.aprove', $item->id)}}" method="post" class="mx-auto">
-    
-                                          @csrf
-                                            <button type="submit"
-                                            class="btn btn-sm btn-danger ">
-                                            approvee
-                                            </button>
-                                            </form>
-                                    
-                                   
-                                            <form action="{{route('status.edit', $item->id)}}" method="post" class="mx-auto">
-                                              @csrf
-                                   
-                                                <button type="submit"
-                                                class="btn btn-sm btn-danger">
-                                                  edited
-                                                </button>
-                                                </form>
-                                    
-                                    <form action="{{route('status.delete', $item->id)}}" method="post" class="mx-auto">
-    
-                                      @csrf
-                                    <button type="submit"
-                                    class="btn btn-sm btn-danger">
-                                    delete
-                                    </button>
-                                    </form>
-                                    </td>
-                                    </tr>
-                                    @endforeach
-                            </tbody>
-    
-                        </table>
-                    </div>
-    
                 </div>
+                @php
+                $id= Auth::user()->id;
+                $articles = App\Models\Article::where('status','toedit')->where('writer_id',$id)->get();
+                    
+                @endphp
+                    
+               
+                <div class="card-body">
+                    <table id="mytable" class=" table table-bordered table-stripped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Title</th>
+                                <th>writer</th>
+                                <th>status </th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach ($articles as $item)
+                                <tr>
+                                <td>{{$item->id}}</td>
+                                <td>{{$item->title}}</td>
+                               
+                               
+                                <td class="d-flex justify-content-center align-items-center">
+                                    <a href="#"
+                                        class="btn btn-sm btn-primary">
+                                        <i class="fas fa-eye"></i>
+                                        </a>
+                                    
+                                   
+                                        <a href="{{route('article.edit', $item->id)}}"
+                                        class="btn btn-sm btn-warning mx-2">
+                                        <i class="fas fa-edit"></i>
+                                        </a>
+                             
+                                </td>
+                                </tr>
+                                @endforeach
+                        </tbody>
+
+                    </table>
+                </div>
+
             </div>
+        </div>
+   
+      
        
       </div>
 
@@ -118,15 +106,15 @@
 					<h5>Categories</h5>
 	        <ul class="list-unstyled components mb-5">
 	          <li>
-	            <a href="#pageSubmenu1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Mens Shoes</a>
+	            <a href="#pageSubmenu1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">مقالاتي </a>
 	            <ul class="collapse list-unstyled" id="pageSubmenu1">
-                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span> Casual</a></li>
-                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span> Football</a></li>
-                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span> Jordan</a></li>
-                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span> Lifestyle</a></li>
-                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span> Running</a></li>
-                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span> Soccer</a></li>
-                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span> Sports</a></li>
+                <li><a href="{{route('dashboard')}}"><span class="fa fa-chevron-right mr-2"></span> أضف مفالة </a></li>
+                <li><a href="{{route('waiting.articles')}}"><span class="fa fa-chevron-right mr-2"></span>مقالات بإنتظار الموافقة عليها </a></li>
+                <li><a href="{{route('tobeedited.articles')}}"><span class="fa fa-chevron-right mr-2"></span> يجب تعديلها</a></li>
+                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span> مرفوضة</a></li>
+                <li><a href="{{route('published.articles')}}"><span class="fa fa-chevron-right mr-2"></span> المقالات المنشورة</a></li>
+              
+              
 	            </ul>
 	          </li>
 	          <li>

@@ -12,6 +12,7 @@
   </head>
   <body>
 
+   
     <nav class="navbar navbar-expand-md bg-dark navbar-dark sticky-top">
       <a class="navbar-brand" href="#">WebSiteName</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navb" aria-expanded="true">
@@ -20,20 +21,25 @@
       <div id="navb" class="navbar-collapse collapse hide">
         <ul class="navbar-nav">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home</a>
+            <a class="nav-link" href="#">الإقتصاد</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Page 1</a>
+            <a class="nav-link" href="#">الرياضة</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Page 2</a>
+            <a class="nav-link" href="#">الإعلانات</a>
           </li>
+          @if(Auth::user()->id==1)
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('admin.panel')}}">الآدمن </a>
+          </li>
+          @endif
         </ul>
     
         <ul class="nav navbar-nav ml-auto">
          
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('admin.logout')}}"><span class="fas fa-sign-in-alt"></span> logout</a>
+            <a class="nav-link" href="{{ route('admin.logout')}}"><span class="fas fa-sign-in-alt"></span> تسجيل الخروج</a>
           </li>
         </ul>
       </div>
@@ -46,7 +52,7 @@
             <div class="card my-5">
                 <div class="card-header">
                     <div class="text-center text-uppercase">
-                       <h4>Clients</h4> 
+                       <h4>بإنتظار الموافقة عليها </h4> 
                     </div>
                 </div>
               @php
@@ -56,35 +62,41 @@
               @endphp
                     
                
-                <div class="card-body">
-                    <table id="mytable" class=" table table-bordered table-stripped">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Title</th>
-                                <th>writer</th>
-                                <th>status </th>
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                            @foreach ($articles as $item)
-                                <tr>
-                                <td>{{$item->id}}</td>
-                                <td>{{$item->title}}</td>
-                               
-                               
-                                <td class="d-flex justify-content-center align-items-center">
+             
+                    <div class="card-body" >
+                      <table id="mytable" class=" table table-bordered table-stripped" style="direction: rtl; text-align: center;">
+                          <thead>
+                              <tr>
+                                  <th>ID</th>
+                                  <th>Title</th>
                                  
+                                 
+                              </tr>
+                          </thead>
+  
+                          <tbody>
+                              @foreach ($articles as $item)
+                                  <tr>
+                                  <td>{{$item->id}}</td>
+                                  <td>{{$item->title}}</td>
+                                 
+                                  <td class="d-flex justify-content-center align-items-center">
+                                    <a href="{{route('article.details', $item->id )}}"
+                                        class="btn btn-sm btn-primary mx-2">
+                                        <i class="fas fa-eye"></i>
+                                        </a>
+                                   
+                                  
                              
                                 </td>
-                                </tr>
-                                @endforeach
-                        </tbody>
-
-                    </table>
-                </div>
-
+                                  
+                                  </tr>
+                                  @endforeach
+                          </tbody>
+  
+                      </table>
+                  </div>
+  
             </div>
         </div>
    
@@ -107,61 +119,11 @@
               
 	            </ul>
 	          </li>
-	          <li>
-	            <a href="#pageSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Mens Shoes</a>
-	            <ul class="collapse list-unstyled" id="pageSubmenu2">
-                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span> Casual</a></li>
-                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span> Football</a></li>
-                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span> Jordan</a></li>
-                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span> Lifestyle</a></li>
-                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span> Running</a></li>
-                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span> Soccer</a></li>
-                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span> Sports</a></li>
-	            </ul>
-	          </li>
-	          <li>
-	            <a href="#pageSubmenu3" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Accessories</a>
-	            <ul class="collapse list-unstyled" id="pageSubmenu3">
-                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span> Nicklace</a></li>
-                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span> Ring</a></li>
-                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span> Bag</a></li>
-                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span> Sacks</a></li>
-                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span> Lipstick</a></li>
-	            </ul>
-	          </li>
-	          <li>
-	            <a href="#pageSubmenu4" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Clothes</a>
-	            <ul class="collapse list-unstyled" id="pageSubmenu4">
-                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span> Jeans</a></li>
-                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span> T-shirt</a></li>
-                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span> Jacket</a></li>
-                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span> Shoes</a></li>
-                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span> Sweater</a></li>
-	            </ul>
-	          </li>
+	       
+	        
 	        </ul>
-					<div class="mb-5">
-						<h5>Tag Cloud</h5>
-            <div class="tagcloud">
-              <a href="#" class="tag-cloud-link">dish</a>
-              <a href="#" class="tag-cloud-link">menu</a>
-              <a href="#" class="tag-cloud-link">food</a>
-              <a href="#" class="tag-cloud-link">sweet</a>
-              <a href="#" class="tag-cloud-link">tasty</a>
-              <a href="#" class="tag-cloud-link">delicious</a>
-              <a href="#" class="tag-cloud-link">desserts</a>
-              <a href="#" class="tag-cloud-link">drinks</a>
-            </div>
-					</div>
-					<div class="mb-5">
-	        	<h5>Newsletter</h5>
-						<form action="#" class="subscribe-form">
-	            <div class="form-group d-flex">
-	            	<div class="icon"><span class="icon-paper-plane"></span></div>
-	              <input type="text" class="form-control" placeholder="Enter Email Address">
-	            </div>
-	          </form>
-					</div>
+			
+			
 	      </div>
     	</nav>
 		</div>

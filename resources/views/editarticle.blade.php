@@ -20,24 +20,30 @@
       <div id="navb" class="navbar-collapse collapse hide">
         <ul class="navbar-nav">
           <li class="nav-item active">
-            <a class="nav-link" href="#">Home</a>
+            <a class="nav-link" href="#">الإقتصاد</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Page 1</a>
+            <a class="nav-link" href="#">الرياضة</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Page 2</a>
+            <a class="nav-link" href="#">الإعلانات</a>
           </li>
+          @if(Auth::user()->id==1)
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('admin.panel')}}">الآدمن </a>
+          </li>
+          @endif
         </ul>
     
         <ul class="nav navbar-nav ml-auto">
          
           <li class="nav-item">
-            <a class="nav-link" href="{{ route('admin.logout')}}"><span class="fas fa-sign-in-alt"></span> logout</a>
+            <a class="nav-link" href="{{ route('admin.logout')}}"><span class="fas fa-sign-in-alt"></span> تسجيل الخروج</a>
           </li>
         </ul>
       </div>
     </nav>
+
 
     <div class="container d-md-flex align-items-stretch">
       <!-- Page Content  -->

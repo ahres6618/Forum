@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
   
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
@@ -28,6 +28,11 @@
           <li class="nav-item">
             <a class="nav-link" href="#">الإعلانات</a>
           </li>
+          @if(Auth::user()->id==1)
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('admin.panel')}}">الآدمن </a>
+          </li>
+          @endif
         </ul>
     
         <ul class="nav navbar-nav ml-auto">
@@ -46,7 +51,7 @@
             <div class="card my-5">
                 <div class="card-header">
                     <div class="text-center text-uppercase">
-                       <h4>Clients</h4> 
+                       <h4>المقالات المنشورة</h4> 
                     </div>
                 </div>
               @php
@@ -56,14 +61,14 @@
               @endphp
                     
                
-                <div class="card-body">
-                    <table id="mytable" class=" table table-bordered table-stripped">
+                <div class="card-body" >
+                    <table id="mytable" class=" table table-bordered table-stripped" style="direction: rtl; text-align: center;">
                         <thead>
                             <tr>
                                 <th>ID</th>
                                 <th>Title</th>
                                 <th>writer</th>
-                                <th>status </th>
+                               
                             </tr>
                         </thead>
 

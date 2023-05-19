@@ -23,7 +23,7 @@ class UserController extends Controller
         public function Storearticle(Request $request){ 
         $image=$request->file('image');
         $name=hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
-        Image::make($image)->resize(636,852)->save('upload/'.$name);
+        Image::make($image)->resize(800,519)->save('upload/'.$name);
         $save_url='upload/'.$name;
         Article::insert([
             'title'=>$request->title,
@@ -59,7 +59,7 @@ class UserController extends Controller
      public function articleupdate(Request $request){
       $image=$request->file('image');
         $name=hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
-        Image::make($image)->resize(636,852)->save('upload/'.$name);
+        Image::make($image)->resize(800,519)->save('upload/'.$name);
         $save_url='upload/'.$name;
       $article_id = $request->id;
       Article::findOrFail($article_id)->update([

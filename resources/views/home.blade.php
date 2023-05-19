@@ -77,17 +77,15 @@ a{
             <div class="row align-items-center">
               <div class="col-md-8 mb-3 mb-sm-0">
                 <h5>
-                  <a href="#" class="text-primary">{{$item->title}}</a>
+                  <a href="{{route('article.details', $item->id )}}" class="text-primary">{{$item->title}}</a>
                 </h5>
-                <p class="text-sm"><span class="op-6">Posted</span> <a class="text-black" href="#">{{Carbon\Carbon::parse($item->created_at)->locale('ar')->diffForhumans()}}</a> 
-                  <span class="op-6">by</span> <a class="text-black" href="#">{{$item->writer}}</a></p>
+                <p class="text-sm"><span class="op-6">Posted</span> <a class="text-black" href="{{route('article.details', $item->id )}}">{{Carbon\Carbon::parse($item->created_at)->locale('ar')->diffForhumans()}}</a> 
+                  <span class="op-6">by</span> <a class="text-black" href="{{route('article.details', $item->id )}}">{{$item->writer}}</a></p>
                 <div class="text-sm op-5 text-black"> {{Str::limit($item->body, 20);}}... </div>
               </div>
               <div class="col-md-4 op-7">
                 <div class="row text-center op-7">
-                  <div class="col px-1"> <i class="ion-connection-bars icon-1x"></i> <span class="d-block text-sm">141 Votes</span> </div>
-                  <div class="col px-1"> <i class="ion-ios-chatboxes-outline icon-1x"></i> <span class="d-block text-sm">122 Replys</span> </div>
-                  <div class="col px-1"> <i class="ion-ios-eye-outline icon-1x"></i> <span class="d-block text-sm">290 Views</span> </div>
+                 
                 </div>
               </div>
             </div>
@@ -109,7 +107,7 @@ a{
               <hr class="m-0">
               <div class="pos-relative px-3 py-3">
                 <h6 class="text-primary text-sm">
-                  <a href="#" class="text-primary">{{$item->title}} </a>
+                  <a href="{{route('article.details', $item->id )}}" class="text-primary">{{$item->title}} </a>
                 </h6>
                 <p class="mb-0 text-sm"><span class="op-6">Posted</span> <a class="text-black" href="#">{{Carbon\Carbon::parse($item->created_at)->diffForhumans()}}</a> <span class="op-6">by</span> <a class="text-black" href="#">{{$item->writer}}</a></p>
               </div>

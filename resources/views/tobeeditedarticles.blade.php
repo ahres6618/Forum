@@ -28,6 +28,11 @@
           <li class="nav-item">
             <a class="nav-link" href="#">الإعلانات</a>
           </li>
+          @if(Auth::user()->id==1)
+          <li class="nav-item">
+            <a class="nav-link" href="{{route('admin.panel')}}">الآدمن </a>
+          </li>
+          @endif
         </ul>
     
         <ul class="nav navbar-nav ml-auto">
@@ -46,7 +51,7 @@
             <div class="card my-5">
                 <div class="card-header">
                     <div class="text-center text-uppercase">
-                       <h4>Clients</h4> 
+                       <h4>يجب تعديلها</h4> 
                     </div>
                 </div>
                 @php
@@ -57,12 +62,12 @@
                     
                
                 <div class="card-body">
-                    <table id="mytable" class=" table table-bordered table-stripped">
+                    <table id="mytable" class=" table table-bordered table-stripped" style="direction: rtl; text-align: center;">
                         <thead>
                             <tr>
                                 <th>ID</th>
                                 <th>Title</th>
-                                <th>writer</th>
+                               
                                 <th>status </th>
                             </tr>
                         </thead>
@@ -75,18 +80,21 @@
                                
                                
                                 <td class="d-flex justify-content-center align-items-center">
-                                    <a href="#"
-                                        class="btn btn-sm btn-primary">
-                                        <i class="fas fa-eye"></i>
-                                        </a>
-                                    
-                                   
-                                        <a href="{{route('article.edit', $item->id)}}"
-                                        class="btn btn-sm btn-warning mx-2">
-                                        <i class="fas fa-edit"></i>
-                                        </a>
-                             
-                                </td>
+                                  <a href="{{route('article.details', $item->id )}}"
+                                      class="btn btn-sm btn-primary mx-2">
+                                      <i class="fas fa-eye"></i>
+                                      </a>
+                                 
+                                  <a href="{{route('article.edit', $item->id )}}"
+                                      class="btn btn-sm btn-warning mx-2">
+                                      <i class="fas fa-edit"></i>
+                                      </a>
+                                      <a href="{{route('article.delete', $item->id )}}"
+                                          class="btn btn-sm btn-danger mx-2">
+                                          <i class="fas fa-trash"></i>
+                                          </a>
+                           
+                              </td>
                                 </tr>
                                 @endforeach
                         </tbody>
@@ -103,7 +111,7 @@
 
       <nav id="sidebar">
 				<div class="p-4 pt-5">
-					<h5>Categories</h5>
+				
 	        <ul class="list-unstyled components mb-5">
 	          <li>
 	            <a href="#pageSubmenu1" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">مقالاتي </a>
@@ -116,62 +124,10 @@
               
               
 	            </ul>
-	          </li>
-	          <li>
-	            <a href="#pageSubmenu2" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Mens Shoes</a>
-	            <ul class="collapse list-unstyled" id="pageSubmenu2">
-                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span> Casual</a></li>
-                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span> Football</a></li>
-                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span> Jordan</a></li>
-                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span> Lifestyle</a></li>
-                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span> Running</a></li>
-                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span> Soccer</a></li>
-                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span> Sports</a></li>
-	            </ul>
-	          </li>
-	          <li>
-	            <a href="#pageSubmenu3" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Accessories</a>
-	            <ul class="collapse list-unstyled" id="pageSubmenu3">
-                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span> Nicklace</a></li>
-                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span> Ring</a></li>
-                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span> Bag</a></li>
-                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span> Sacks</a></li>
-                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span> Lipstick</a></li>
-	            </ul>
-	          </li>
-	          <li>
-	            <a href="#pageSubmenu4" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Clothes</a>
-	            <ul class="collapse list-unstyled" id="pageSubmenu4">
-                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span> Jeans</a></li>
-                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span> T-shirt</a></li>
-                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span> Jacket</a></li>
-                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span> Shoes</a></li>
-                <li><a href="#"><span class="fa fa-chevron-right mr-2"></span> Sweater</a></li>
-	            </ul>
-	          </li>
-	        </ul>
-					<div class="mb-5">
-						<h5>Tag Cloud</h5>
-            <div class="tagcloud">
-              <a href="#" class="tag-cloud-link">dish</a>
-              <a href="#" class="tag-cloud-link">menu</a>
-              <a href="#" class="tag-cloud-link">food</a>
-              <a href="#" class="tag-cloud-link">sweet</a>
-              <a href="#" class="tag-cloud-link">tasty</a>
-              <a href="#" class="tag-cloud-link">delicious</a>
-              <a href="#" class="tag-cloud-link">desserts</a>
-              <a href="#" class="tag-cloud-link">drinks</a>
-            </div>
-					</div>
-					<div class="mb-5">
-	        	<h5>Newsletter</h5>
-						<form action="#" class="subscribe-form">
-	            <div class="form-group d-flex">
-	            	<div class="icon"><span class="icon-paper-plane"></span></div>
-	              <input type="text" class="form-control" placeholder="Enter Email Address">
-	            </div>
-	          </form>
-					</div>
+	        
+	       
+	    
+				
 	      </div>
     	</nav>
 		</div>
